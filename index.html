@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Ajay Gupta, a web developer showcasing projects, skills, and contact information.">
-    <title>Ajay Gupta | Web Developer Portfolio</title>
+    <meta name="description" content="Portfolio of Ajay Gupta, Vice President in the Software Engineering Division at Kotak Mahindra Bank, showcasing leadership, engineering initiatives, and technical skills.">
+    <title>Ajay Gupta | Vice President, Software Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,18 +24,25 @@
                 <li><a href="#about-me">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#resume">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <h1>Ajay Gupta</h1>
-        <p>Web Developer</p>
+        <p class="hero-role">Vice President, Software Engineering Division, Kotak Mahindra Bank</p>
+        <p class="hero-summary">I lead engineering teams to deliver secure, scalable, and high-performance digital banking platforms with a strong focus on reliability, compliance, and customer impact.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+            <a class="btn btn-tertiary" href="#resume">View Resume</a>
+        </div>
     </header>
 
     <main>
         <section id="about-me">
             <h2>About Me</h2>
             <p>
-                Hello! I'm Ajay Gupta, a passionate web developer with experience in building responsive and accessible web applications. I enjoy solving problems and creating user-friendly digital experiences.
+                Hello! I'm Ajay Gupta, Vice President in the Software Engineering Division at Kotak Mahindra Bank. I specialize in building and scaling enterprise banking solutions, driving platform modernization, and mentoring engineering teams to deliver secure and customer-focused digital products.
             </p>
         </section>
 
@@ -47,21 +57,21 @@
             <article class="project-card" data-category="web">
                 <figure>
                     <img class="lightbox-trigger" src="project1.svg" alt="Preview graphic for responsive web app project" tabindex="0" role="button" aria-label="Open larger preview for Responsive Web App">
-                    <figcaption>Project 1: Responsive Web App</figcaption>
+                    <figcaption>Project 1: Digital Onboarding Platform</figcaption>
                 </figure>
-                <h3>Responsive Web App</h3>
+                <h3>Digital Onboarding Platform</h3>
                 <p>
-                    A modern, mobile-friendly web application built with HTML, CSS, and JavaScript. Features include user authentication and real-time data updates.
+                    Led delivery of a secure onboarding platform that streamlined customer acquisition journeys, reduced turnaround time, and improved conversion through optimized digital workflows.
                 </p>
             </article>
             <article class="project-card" data-category="analytics">
                 <figure>
                     <img class="lightbox-trigger" src="project2.svg" alt="Preview graphic for dashboard analytics project" tabindex="0" role="button" aria-label="Open larger preview for Dashboard Analytics">
-                    <figcaption>Project 2: Dashboard Analytics</figcaption>
+                    <figcaption>Project 2: Engineering Reliability Dashboard</figcaption>
                 </figure>
-                <h3>Dashboard Analytics</h3>
+                <h3>Engineering Reliability Dashboard</h3>
                 <p>
-                    An interactive dashboard for visualizing analytics data, built with React and D3.js. Focused on accessibility and performance.
+                    Built a centralized observability dashboard for release health, incident trends, and service performance, enabling faster decision-making and operational excellence.
                 </p>
             </article>
             </div>
@@ -70,13 +80,34 @@
         <section id="skills">
             <h2>Skills</h2>
             <ul>
-                <li>HTML5 &amp; CSS3</li>
-                <li>JavaScript (ES6+)</li>
-                <li>React.js</li>
-                <li>Node.js</li>
-                <li>Accessibility (WCAG)</li>
-                <li>Git &amp; GitHub</li>
-                <li>Responsive Design</li>
+                <li>Engineering Leadership</li>
+                <li>Enterprise Architecture</li>
+                <li>Digital Banking Platforms</li>
+                <li>Cloud &amp; DevOps Strategy</li>
+                <li>System Reliability Engineering</li>
+                <li>Secure SDLC &amp; Compliance</li>
+                <li>Stakeholder &amp; Program Management</li>
+            </ul>
+        </section>
+
+        <section id="resume" class="resume-section">
+            <h2>Resume</h2>
+            <p>
+                For complete professional details, including leadership experience, technical expertise, and major delivery outcomes, view my resume directly below.
+            </p>
+            <div class="resume-actions">
+                <a class="btn btn-primary" href="Ajay_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+            <iframe
+                class="resume-frame"
+                src="Ajay_Gupta_Resume.pdf"
+                title="Ajay Gupta Resume"
+                loading="lazy"
+            ></iframe>
+            <ul class="resume-highlights">
+                <li>Vice President, Software Engineering Division at Kotak Mahindra Bank</li>
+                <li>Enterprise platform modernization and reliability leadership</li>
+                <li>Cross-functional delivery across architecture, engineering, and operations</li>
             </ul>
         </section>
 
@@ -100,12 +131,13 @@
                 </div>
                 <button type="submit">Send Message</button>
                 <p class="form-status" id="form-status" aria-live="polite"></p>
+                <p class="resume-note">Prefer a detailed profile? <a href="#resume">Go to Resume panel</a>.</p>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Ajay Gupta. All rights reserved.</p>
+        <p>&copy; <span id="current-year">2026</span> Ajay Gupta. All rights reserved.</p>
     </footer>
 
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Project image preview">

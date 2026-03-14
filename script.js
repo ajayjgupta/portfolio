@@ -1,6 +1,8 @@
 const navToggle = document.getElementById("nav-toggle");
 const navToggleButton = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".nav-list a");
+const mainNav = document.querySelector(".main-nav");
+const pageSections = document.querySelectorAll("main section");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectCards = document.querySelectorAll(".project-card");
 const lightbox = document.getElementById("lightbox");
@@ -9,6 +11,7 @@ const lightboxCaption = document.getElementById("lightbox-caption");
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
 const contactForm = document.querySelector(".contact-form");
+const currentYearElement = document.getElementById("current-year");
 
 function setMenuState(isOpen) {
   if (!navToggle) {
@@ -73,8 +76,37 @@ function setupSmoothScroll() {
 
       event.preventDefault();
       targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", targetId);
     });
   });
+}
+
+function setupActiveSectionHighlight() {
+  const sectionById = new Map();
+  pageSections.forEach((section) => {
+    sectionById.set(`#${section.id}`, section);
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const activeId = `#${entry.target.id}`;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === activeId);
+        });
+      });
+    },
+    {
+      root: null,
+      threshold: 0.45,
+    }
+  );
+
+  sectionById.forEach((section) => observer.observe(section));
 }
 
 function filterProjects(category) {
@@ -100,6 +132,48 @@ function setupProjectFilters() {
       filterProjects(category);
     });
   });
+}
+
+function setupSectionReveal() {
+  if (!pageSections.length) {
+    return;
+  }
+
+  pageSections.forEach((section) => {
+    section.classList.add("reveal");
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      root: null,
+      threshold: 0.2,
+    }
+  );
+
+  pageSections.forEach((section) => revealObserver.observe(section));
+}
+
+function setupScrolledNavEffect() {
+  if (!mainNav) {
+    return;
+  }
+
+  const updateScrolledState = () => {
+    mainNav.classList.toggle("is-scrolled", window.scrollY > 18);
+  };
+
+  updateScrolledState();
+  window.addEventListener("scroll", updateScrolledState, { passive: true });
 }
 
 function openLightbox(image) {
@@ -165,8 +239,12 @@ function isValidEmail(value) {
 
 function setFieldError(fieldId, message) {
   const field = document.getElementById(fieldId);
-  const errorField = document.getElementById(`${fieldId.split("-")[0]}-error`) ||
-    document.getElementById(fieldId === "email-address" ? "email-error" : fieldId === "user-message" ? "message-error" : "name-error");
+  const errorFieldMap = {
+    "full-name": "name-error",
+    "email-address": "email-error",
+    "user-message": "message-error",
+  };
+  const errorField = document.getElementById(errorFieldMap[fieldId]);
 
   if (!field || !errorField) {
     return;
@@ -174,6 +252,14 @@ function setFieldError(fieldId, message) {
 
   errorField.textContent = message;
   field.classList.toggle("is-invalid", Boolean(message));
+}
+
+function setupCurrentYear() {
+  if (!currentYearElement) {
+    return;
+  }
+
+  currentYearElement.textContent = String(new Date().getFullYear());
 }
 
 function validateField(field) {
@@ -272,11 +358,15 @@ function runDebugChecks() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  setupCurrentYear();
   setupMenuToggle();
   setupSmoothScroll();
+  setupActiveSectionHighlight();
+  setupScrolledNavEffect();
   setupProjectFilters();
   setupLightbox();
   setupFormValidation();
+  setupSectionReveal();
   runDebugChecks();
 });
 
