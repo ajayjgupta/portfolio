@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of [Your Name], a web developer showcasing projects, skills, and contact information.">
-    <title>[Your Name] | Web Developer Portfolio</title>
+    <meta name="description" content="Portfolio of Ajay Gupta, a web developer showcasing projects, skills, and contact information.">
+    <title>Ajay Gupta | Web Developer Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav role="navigation" aria-label="Main Navigation">
-            <ul>
+    <header class="site-header">
+        <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+            <div class="brand">Ajay Gupta</div>
+            <input class="nav-toggle-input" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" aria-controls="site-menu" aria-expanded="false">
+            <label class="nav-toggle" for="nav-toggle" role="button" tabindex="0" aria-controls="site-menu" aria-label="Toggle site menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="nav-list" id="site-menu">
                 <li><a href="#about-me">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <h1>[Your Name]</h1>
+        <h1>Ajay Gupta</h1>
         <p>Web Developer</p>
     </header>
 
@@ -25,15 +32,21 @@
         <section id="about-me">
             <h2>About Me</h2>
             <p>
-                Hello! I'm [Your Name], a passionate web developer with experience in building responsive and accessible web applications. I enjoy solving problems and creating user-friendly digital experiences.
+                Hello! I'm Ajay Gupta, a passionate web developer with experience in building responsive and accessible web applications. I enjoy solving problems and creating user-friendly digital experiences.
             </p>
         </section>
 
         <section id="projects">
             <h2>Projects</h2>
-            <article>
+            <div class="project-filters" role="group" aria-label="Filter projects by category">
+                <button class="filter-btn is-active" type="button" data-filter="all">All</button>
+                <button class="filter-btn" type="button" data-filter="web">Web App</button>
+                <button class="filter-btn" type="button" data-filter="analytics">Analytics</button>
+            </div>
+            <div class="projects-grid">
+            <article class="project-card" data-category="web">
                 <figure>
-                    <img src="project1.jpg" alt="Screenshot of Project 1 web application interface">
+                    <img class="lightbox-trigger" src="project1.svg" alt="Preview graphic for responsive web app project" tabindex="0" role="button" aria-label="Open larger preview for Responsive Web App">
                     <figcaption>Project 1: Responsive Web App</figcaption>
                 </figure>
                 <h3>Responsive Web App</h3>
@@ -41,9 +54,9 @@
                     A modern, mobile-friendly web application built with HTML, CSS, and JavaScript. Features include user authentication and real-time data updates.
                 </p>
             </article>
-            <article>
+            <article class="project-card" data-category="analytics">
                 <figure>
-                    <img src="project2.jpg" alt="Screenshot of Project 2 dashboard">
+                    <img class="lightbox-trigger" src="project2.svg" alt="Preview graphic for dashboard analytics project" tabindex="0" role="button" aria-label="Open larger preview for Dashboard Analytics">
                     <figcaption>Project 2: Dashboard Analytics</figcaption>
                 </figure>
                 <h3>Dashboard Analytics</h3>
@@ -51,6 +64,7 @@
                     An interactive dashboard for visualizing analytics data, built with React and D3.js. Focused on accessibility and performance.
                 </p>
             </article>
+            </div>
         </section>
 
         <section id="skills">
@@ -68,26 +82,38 @@
 
         <section id="contact">
             <h2>Contact</h2>
-            <form action="#" method="post" aria-label="Contact Form">
+            <form class="contact-form" action="#" method="post" aria-label="Contact Form" novalidate>
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required aria-required="true">
+                    <label for="full-name">Name:</label>
+                    <input type="text" id="full-name" name="full-name" autocomplete="name" required aria-required="true" aria-describedby="name-error">
+                    <small class="field-error" id="name-error" aria-live="polite"></small>
                 </div>
                 <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required aria-required="true">
+                    <label for="email-address">Email:</label>
+                    <input type="email" id="email-address" name="email-address" autocomplete="email" required aria-required="true" aria-describedby="email-error">
+                    <small class="field-error" id="email-error" aria-live="polite"></small>
                 </div>
                 <div>
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                    <label for="user-message">Message:</label>
+                    <textarea id="user-message" name="user-message" rows="5" required aria-required="true" aria-describedby="message-error"></textarea>
+                    <small class="field-error" id="message-error" aria-live="polite"></small>
                 </div>
                 <button type="submit">Send Message</button>
+                <p class="form-status" id="form-status" aria-live="polite"></p>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; [Current Year] [Your Name]. All rights reserved.</p>
+        <p>&copy; 2026 Ajay Gupta. All rights reserved.</p>
     </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Project image preview">
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image preview">Close</button>
+        <img class="lightbox-image" id="lightbox-image" src="" alt="">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
